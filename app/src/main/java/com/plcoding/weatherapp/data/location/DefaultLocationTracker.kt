@@ -50,8 +50,6 @@ class DefaultLocationTracker @Inject constructor(
 
         }
 
-
-
         return suspendCancellableCoroutine { cont ->
             locationClient.lastLocation.apply {
                 if (isComplete) {
@@ -65,16 +63,16 @@ class DefaultLocationTracker @Inject constructor(
                 addOnSuccessListener {
                     cont.resume(it)
 
-                    Log.d("TAG", it.toString())
+
                 }
                 addOnFailureListener {
                     cont.resume(null)
-                    Log.d("TAG", "failure")
+
 
                 }
                 addOnCanceledListener {
                     cont.cancel()
-                    Log.d("TAG", "cancel")
+
                 }
             }
         }
